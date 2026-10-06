@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Homework - Apex Tuition Academy</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/dashboard.html" class="brand-link">
+        <div class="brand-logo">📚</div>
+        <div class="brand-text">
+          <h1>Apex Tuition Academy</h1>
+          <span>Teacher Dashboard</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="/dashboard.html" class="btn btn-secondary btn-sm">
+          ← Back to Dashboard
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container container-narrow" style="padding: 2.5rem 1rem;">
+    
+    <div style="margin-bottom: 1.75rem;">
+      <h1 id="formPageHeading" style="font-size: 1.75rem; font-weight: 800;">Add New Homework Assignment</h1>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.25rem;">
+        Fill in the details below. Once published, you'll receive a unique public link to share with students on WhatsApp.
+      </p>
+    </div>
+
+    <div class="form-card">
+      <form id="homeworkForm">
+
+        <!-- Title -->
+        <div class="form-group">
+          <label for="title" class="form-label">Homework Title <span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="title" 
+            name="title" 
+            class="form-input" 
+            placeholder="e.g. Chapter 4: Algebraic Fractions Exercise 4.2" 
+            required
+          >
+        </div>
+
+        <!-- Class & Subject row -->
+        <div class="form-row two-col">
+          <div class="form-group">
+            <label for="classSelect" class="form-label">Class / Grade <span class="required">*</span></label>
+            <select id="classSelect" class="form-select" required>
+              <option value="">-- Select Class --</option>
+              <option value="Class 6">Class 6</option>
+              <option value="Class 7">Class 7</option>
+              <option value="Class 8">Class 8</option>
+              <option value="Class 9">Class 9</option>
+              <option value="Class 10">Class 10</option>
+              <option value="Class 11 (1st Year)">Class 11 (1st Year)</option>
+              <option value="Class 12 (2nd Year)">Class 12 (2nd Year)</option>
+              <option value="O-Level">O-Level</option>
+              <option value="A-Level">A-Level</option>
+              <option value="__custom__">Other / Custom Class...</option>
+            </select>
+            <input 
+              type="text" 
+              id="customClassInput" 
+              class="form-input" 
+              placeholder="Enter custom class name" 
+              style="display: none; margin-top: 0.5rem;"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="subjectSelect" class="form-label">Subject <span class="required">*</span></label>
+            <select id="subjectSelect" class="form-select" required>
+              <option value="">-- Select Subject --</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Physics">Physics</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="Biology">Biology</option>
+              <option value="English">English</option>
+              <option value="Urdu">Urdu</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="General Science">General Science</option>
+              <option value="Social Studies / Pak Studies">Social Studies / Pak Studies</option>
+              <option value="__custom__">Other / Custom Subject...</option>
+            </select>
+            <input 
+              type="text" 
+              id="customSubjectInput" 
+              class="form-input" 
+              placeholder="Enter custom subject name" 
+              style="display: none; margin-top: 0.5rem;"
+            >
+          </div>
+        </div>
+
+        <!-- Dates row -->
+        <div class="form-row two-col">
+          <div class="form-group">
+            <label for="homework_date" class="form-label">Assigned Date <span class="required">*</span></label>
+            <input type="date" id="homework_date" name="homework_date" class="form-input" required>
+            <span class="form-help">Date this homework is being given to students</span>
+          </div>
+
+          <div class="form-group">
+            <label for="deadline_date" class="form-label">Submission Deadline <span class="required">*</span></label>
+            <input type="date" id="deadline_date" name="deadline_date" class="form-input" required>
+            <span class="form-help">Last date/time for students to submit work</span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label for="description" class="form-label">Homework Instructions / Description <span class="required">*</span></label>
+          <textarea 
+            id="description" 
+            name="description" 
+            class="form-textarea" 
+            placeholder="Write complete homework instructions, page numbers, question numbers, textbook references, and guidelines for students..." 
+            rows="5"
+            required
+          ></textarea>
+        </div>
+
+        <!-- Attachment upload -->
+        <div class="form-group">
+          <label class="form-label">Attachment (Optional)</label>
+          
+          <!-- Dropzone -->
+          <div id="fileDropzone" class="file-dropzone">
+            <input type="file" id="fileInput" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+            <div class="dropzone-icon">📁</div>
+            <div class="dropzone-title">Click to upload or drag & drop file</div>
+            <div class="dropzone-subtitle">Supported formats: PDF, JPG, PNG, DOC, DOCX (Max 30MB)</div>
+          </div>
+
+          <!-- Existing file box (used in edit mode) -->
+          <div id="existingFileBox" class="file-selected-box" style="display: none;">
+            <div class="file-selected-info">
+              <span style="font-size: 1.25rem;">📎</span>
+              <div>
+                <div class="file-selected-name" id="existingFileName">Current file.pdf</div>
+                <div class="file-selected-size" id="existingFileSize">Attached</div>
+              </div>
+            </div>
+            <button type="button" id="removeExistingAttachmentBtn" class="file-remove-btn">
+              Remove & Replace
+            </button>
+          </div>
+
+          <!-- New file selected box -->
+          <div id="fileSelectedBox" class="file-selected-box" style="display: none;">
+            <div class="file-selected-info">
+              <span style="font-size: 1.25rem;">📄</span>
+              <div>
+                <div class="file-selected-name" id="selectedFileName">filename.pdf</div>
+                <div class="file-selected-size" id="selectedFileSize">0 KB</div>
+              </div>
+            </div>
+            <button type="button" id="removeFileBtn" class="file-remove-btn">
+              Remove
+            </button>
+          </div>
+        </div>
+
+        <!-- YouTube / Video URL -->
+        <div class="form-group">
+          <label for="video_url" class="form-label">Video / YouTube Link (Optional)</label>
+          <input 
+            type="url" 
+            id="video_url" 
+            name="video_url" 
+            class="form-input" 
+            placeholder="https://www.youtube.com/watch?v=..."
+          >
+          <span class="form-help">Optional tutorial, lecture explanation, or solution video link</span>
+        </div>
+
+        <!-- Form Actions -->
+        <div style="display: flex; gap: 1rem; align-items: center; justify-content: flex-end; margin-top: 2rem;">
+          <a href="/dashboard.html" class="btn btn-secondary">
+            Cancel
+          </a>
+          <button type="submit" id="submitBtn" class="btn btn-primary btn-lg">
+            <span>Publish & Generate Link</span> 🚀
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <!-- Published Success Modal -->
+  <div id="publishSuccessModal" class="modal-overlay">
+    <div class="modal">
+      <div style="text-align: center; margin-bottom: 1.25rem;">
+        <div style="width: 56px; height: 56px; background: #ecfdf5; color: #059669; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin: 0 auto 0.75rem;">
+          🎉
+        </div>
+        <h3 class="modal-title">Homework Published!</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">
+          A unique public link has been created for your students.
+        </p>
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label class="form-label" style="font-size: 0.8rem;">Shareable Link</label>
+        <div class="share-link-box" style="margin-top: 0.25rem;">
+          <input type="text" id="publishedShareLink" class="share-link-input" readonly>
+          <button id="publishedCopyBtn" class="btn btn-primary btn-sm">
+            📋 Copy
+          </button>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <a id="publishedWaBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;">
+          💬 Share on WhatsApp
+        </a>
+        <div style="display: flex; gap: 0.5rem;">
+          <a id="publishedViewLink" href="#" target="_blank" class="btn btn-secondary" style="flex: 1;">
+            👁️ Preview Page
+          </a>
+          <a href="/dashboard.html" class="btn btn-secondary" style="flex: 1;">
+            ← Go to Dashboard
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div>Apex Tuition Academy &copy; 2026. Teacher Administration Portal.</div>
+      <div><a href="/dashboard.html" style="color: var(--primary); text-decoration: none;">Dashboard</a></div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/form.js"></script>
+</body>
+</html>

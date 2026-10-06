@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework Assignment - Apex Tuition Academy</title>
+  <meta name="description" content="View homework instructions, attached worksheets and deadlines.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/homework.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="brand-link">
+        <div class="brand-logo">📚</div>
+        <div class="brand-text">
+          <h1>Apex Tuition Academy</h1>
+          <span>Student Homework</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="/" class="btn btn-secondary btn-sm">
+          ← All Homework
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Single Homework View Container -->
+  <main class="container container-narrow single-hw-wrapper">
+    
+    <!-- Loading State -->
+    <div id="hwLoader" style="text-align: center; padding: 4rem 1rem;">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem; animation: spin 1s infinite linear;">🔄</div>
+      <p style="color: var(--text-muted); font-size: 1rem;">Loading your homework assignment...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="hwErrorBox" class="empty-state" style="display: none;">
+      <div class="empty-state-icon">⚠️</div>
+      <h3>Homework Not Found</h3>
+      <p id="hwErrorMessage">The homework link you opened might be incorrect or has been deleted.</p>
+      <a href="/" class="btn btn-primary">Browse All Homework</a>
+    </div>
+
+    <!-- Homework Content Card -->
+    <article id="hwContent" class="hw-view-card" style="display: none;">
+      
+      <!-- Academy Branding & Header -->
+      <header class="hw-view-header">
+        <div class="academy-branding-bar">
+          <div class="academy-chip">
+            <span>🏫</span> Apex Tuition Academy
+          </div>
+          <button id="printBtn" class="btn btn-secondary btn-sm" title="Print Homework">
+            🖨️ Print
+          </button>
+        </div>
+
+        <h1 id="hwTitle" class="hw-view-title">Homework Title</h1>
+
+        <div class="hw-view-meta-row">
+          <span id="hwClass" class="badge badge-class" style="font-size: 0.85rem; padding: 0.35rem 0.85rem;">Class</span>
+          <span id="hwSubject" class="badge badge-subject" style="font-size: 0.85rem; padding: 0.35rem 0.85rem;">Subject</span>
+        </div>
+      </header>
+
+      <!-- Status Banner -->
+      <div id="hwStatusBanner" class="status-banner banner-active">
+        <div id="hwStatusText">Loading status...</div>
+      </div>
+
+      <!-- Main Body -->
+      <div class="hw-view-body">
+        
+        <!-- Assigned and Deadline Dates -->
+        <div class="dates-panel">
+          <div class="date-block">
+            <span class="date-block-label">Assigned Date</span>
+            <span id="hwDate" class="date-block-val">-</span>
+          </div>
+          <div class="date-block">
+            <span class="date-block-label">Submission Deadline</span>
+            <span id="hwDeadline" class="date-block-val">-</span>
+          </div>
+        </div>
+
+        <!-- Instructions -->
+        <div>
+          <div class="section-label">
+            <span>📝</span> Instructions & Details
+          </div>
+          <div id="hwInstructions" class="instructions-box"></div>
+        </div>
+
+        <!-- Attached File / Download -->
+        <div id="attachmentSection" style="display: none;">
+          <div class="section-label">
+            <span>📎</span> Attached Worksheet / File
+          </div>
+          <div class="attachment-card">
+            <div class="attachment-left">
+              <div id="fileTypeIcon" class="file-type-icon">📄</div>
+              <div class="attachment-meta">
+                <h4 id="attachmentName">worksheet.pdf</h4>
+                <span id="attachmentSize">2.4 MB</span>
+              </div>
+            </div>
+            <a id="downloadBtn" href="#" class="btn btn-primary" download>
+              ⬇️ Download File
+            </a>
+          </div>
+
+          <!-- Image Preview for photos of board / questions -->
+          <div id="imagePreviewContainer" class="image-preview-container" style="display: none;">
+            <img id="previewImg" src="" alt="Homework Attachment Preview">
+          </div>
+        </div>
+
+        <!-- Video Lesson / Tutorial Embed -->
+        <div id="videoSection" style="display: none;">
+          <div class="section-label">
+            <span>🎥</span> Video Explanation / Tutorial
+          </div>
+          <div class="video-container">
+            <iframe id="videoFrame" src="" title="Homework Tutorial Video" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+          </div>
+          <a id="videoDirectLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="margin-top: -1rem; margin-bottom: 2rem; display: none;">
+            🔗 Open Video Link in New Tab
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Mobile-friendly Share & Action Footer -->
+      <footer class="student-share-bar">
+        <div style="font-size: 0.9rem; color: var(--text-muted);">
+          Share this homework with classmates:
+        </div>
+        <div class="student-share-buttons">
+          <button id="copyLinkBtn" class="btn btn-secondary btn-sm">
+            🔗 Copy Link
+          </button>
+          <a id="waShareBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm">
+            💬 Share on WhatsApp
+          </a>
+        </div>
+      </footer>
+
+    </article>
+
+    <!-- Return to student directory link -->
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="/" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+        ← Back to All Homework Assignments
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div>Apex Tuition Academy &copy; 2026. Excellence in Academic Coaching.</div>
+      <div>Students do not require login. Homework is freely accessible.</div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/homework.js"></script>
+</body>
+</html>

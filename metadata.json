@@ -1,0 +1,6 @@
+{
+  "name": "Academy Homework Hub",
+  "description": "Tuition Academy Homework Sharing Web App with teacher dashboard, SQLite database, file uploads, and WhatsApp sharing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

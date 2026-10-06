@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard - Apex Tuition Academy</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/dashboard.html" class="brand-link">
+        <div class="brand-logo">📚</div>
+        <div class="brand-text">
+          <h1 id="academyName">Apex Tuition Academy</h1>
+          <span>Teacher Dashboard</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="/" target="_blank" class="nav-link" title="Open student view in new tab">
+          🌐 View Student Portal
+        </a>
+        <a href="/add-homework.html" class="btn btn-primary btn-sm">
+          ➕ Add Homework
+        </a>
+        <button id="logoutBtn" class="btn btn-secondary btn-sm" title="Log out">
+          🚪 Logout
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Dashboard Main Container -->
+  <main class="container dashboard-layout">
+    
+    <!-- Welcome Header -->
+    <div class="dashboard-header">
+      <div class="teacher-welcome">
+        <h1>Welcome, <span id="teacherName">Teacher</span>! 👋</h1>
+        <p>Manage, publish, and share homework links with students through WhatsApp.</p>
+      </div>
+      <div class="dashboard-actions">
+        <a href="/add-homework.html" class="btn btn-primary">
+          ➕ New Homework Assignment
+        </a>
+      </div>
+    </div>
+
+    <!-- Statistics Grid -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon total">📚</div>
+        <div class="stat-info">
+          <div class="stat-value" id="statTotal">0</div>
+          <div class="stat-label">Total Homework</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon today">🚀</div>
+        <div class="stat-info">
+          <div class="stat-value" id="statToday">0</div>
+          <div class="stat-label">Uploaded Today</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon active">✅</div>
+        <div class="stat-info">
+          <div class="stat-value" id="statActive">0</div>
+          <div class="stat-label">Active Homework</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon due">⏳</div>
+        <div class="stat-info">
+          <div class="stat-value" id="statDue">0</div>
+          <div class="stat-label">Due Soon</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters & Search Toolbar -->
+    <section class="dashboard-controls">
+      <div class="controls-grid">
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Search Homework</label>
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="dashboardSearch" class="form-input" placeholder="Search by title, subject, or class...">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Class</label>
+          <select id="classFilter" class="form-select">
+            <option value="all">All Classes</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Subject</label>
+          <select id="subjectFilter" class="form-select">
+            <option value="all">All Subjects</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Status</label>
+          <select id="statusFilter" class="form-select">
+            <option value="all">All Status</option>
+            <option value="active">Active</option>
+            <option value="due-soon">Due Soon</option>
+            <option value="passed">Deadline Passed</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <button id="resetFiltersBtn" class="btn btn-secondary" style="width: 100%;">
+            Reset
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table Meta Header -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <h2 style="font-size: 1.25rem;">All Homework Assignments</h2>
+      <span id="displayedHwCount" style="color: var(--text-muted); font-size: 0.875rem; font-weight: 600;">Loading...</span>
+    </div>
+
+    <!-- Desktop Homework Table -->
+    <div class="table-container">
+      <table class="homework-table">
+        <thead>
+          <tr>
+            <th>Homework Title</th>
+            <th>Class</th>
+            <th>Subject</th>
+            <th>Assigned Date</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th style="text-align: right; padding-right: 1.5rem;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="homeworkTableBody">
+          <!-- Dynamically populated -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mobile Homework Cards -->
+    <div id="mobileHwList" class="mobile-hw-list">
+      <!-- Dynamically populated for mobile screens -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="dashboardEmptyState" class="empty-state" style="display: none; margin-top: 1rem;">
+      <div class="empty-state-icon">📋</div>
+      <h3>No homework assignments found</h3>
+      <p>You haven't added any homework matching the filter criteria yet. Click below to add a new homework.</p>
+      <a href="/add-homework.html" class="btn btn-primary">➕ Add Homework Now</a>
+    </div>
+
+  </main>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Confirm Delete</h3>
+        <button id="deleteModalClose" class="modal-close">&times;</button>
+      </div>
+      <p style="color: var(--text-main); font-size: 0.95rem;">
+        Are you sure you want to delete <strong id="deleteTargetTitle">this homework</strong>?
+      </p>
+      <p style="color: var(--danger-text); font-size: 0.85rem; margin-top: 0.5rem;">
+        ⚠️ This action cannot be undone. Any attached files will also be permanently removed.
+      </p>
+      <div class="modal-actions">
+        <button id="cancelDeleteBtn" class="btn btn-secondary">Cancel</button>
+        <button id="confirmDeleteBtn" class="btn btn-danger">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div id="shareModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Share Homework</h3>
+        <button id="shareModalClose" class="modal-close">&times;</button>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem;" id="modalShareTitle">
+        Share this unique link with students:
+      </p>
+      
+      <div class="share-link-box">
+        <input type="text" id="modalShareUrl" class="share-link-input" readonly>
+        <button id="copyModalLinkBtn" class="btn btn-primary btn-sm">Copy</button>
+      </div>
+
+      <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+        <a id="modalWaBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;">
+          💬 Send on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div>Apex Tuition Academy &copy; 2026. Teacher Administration Portal.</div>
+      <div><a href="/" target="_blank" style="color: var(--primary); text-decoration: none;">Open Student Portal</a></div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

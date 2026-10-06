@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academy Homework Hub</title>
+  <meta name="description" content="Tuition Academy Homework Sharing Web App with teacher dashboard, SQLite database, file uploads, and WhatsApp sharing.">
+  <meta property="og:title" content="Academy Homework Hub">
+  <meta property="og:description" content="Tuition Academy Homework Sharing Web App with teacher dashboard, SQLite database, file uploads, and WhatsApp sharing.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/homework.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="brand-link">
+        <div class="brand-logo">📚</div>
+        <div class="brand-text">
+          <h1>Apex Tuition Academy</h1>
+          <span>Student Homework Portal</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="/login.html" class="btn btn-secondary btn-sm">
+          🔐 Teacher Login
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="portal-hero">
+    <div class="container">
+      <h1>Daily Homework & Assignments</h1>
+      <p>Access your class assignments, practice worksheets, and deadlines directly from your phone. No sign-in required!</p>
+    </div>
+  </section>
+
+  <!-- Main Content & Filters -->
+  <main class="container">
+    <div class="student-search-card">
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 1rem; align-items: end;" class="controls-grid">
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Search Homework</label>
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="studentSearchInput" class="form-input" placeholder="Search by topic, subject, or class...">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Class</label>
+          <select id="studentClassSelect" class="form-select">
+            <option value="all">All Classes</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Subject</label>
+          <select id="studentSubjectSelect" class="form-select">
+            <option value="all">All Subjects</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Status</label>
+          <select id="studentStatusSelect" class="form-select">
+            <option value="all">All Status</option>
+            <option value="active">Active</option>
+            <option value="due-soon">Due Soon</option>
+            <option value="passed">Deadline Passed</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <button id="studentResetFilters" class="btn btn-secondary" style="width: 100%; white-space: nowrap;">
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results count bar -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+      <h2 style="font-size: 1.25rem;">Latest Assignments</h2>
+      <span id="resultsCount" style="color: var(--text-muted); font-size: 0.875rem; font-weight: 600;">Loading assignments...</span>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="publicLoader" style="text-align: center; padding: 3rem 0; color: var(--text-muted);">
+      <div style="font-size: 2rem; margin-bottom: 0.5rem; animation: spin 1s infinite linear;">🔄</div>
+      <p>Loading homework assignments...</p>
+    </div>
+
+    <!-- Homework Cards Grid -->
+    <div id="publicHwGrid" class="homework-grid"></div>
+
+    <!-- Empty State -->
+    <div id="publicEmptyState" class="empty-state" style="display: none;">
+      <div class="empty-state-icon">📝</div>
+      <h3>No homework found</h3>
+      <p>There are no homework assignments matching your selected search criteria or class filters.</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div>
+        <strong>Apex Tuition Academy</strong> &copy; 2026. Empowering Students Towards Excellence.
+      </div>
+      <div>
+        Teachers: <a href="/login.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Sign in to Dashboard</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

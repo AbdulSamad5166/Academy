@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Login - Apex Tuition Academy</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .login-container {
+      min-height: calc(100vh - 140px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .login-card {
+      max-width: 440px;
+      width: 100%;
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      padding: 2.25rem;
+    }
+    .login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .login-icon {
+      width: 60px;
+      height: 60px;
+      background: #eff6ff;
+      color: var(--primary);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin: 0 auto 1rem;
+    }
+    .alert-error {
+      background: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      color: var(--danger-text);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      margin-bottom: 1.25rem;
+      display: none;
+    }
+    .demo-credentials-box {
+      margin-top: 1.75rem;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      font-size: 0.825rem;
+      color: var(--text-muted);
+    }
+    .demo-btn-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="brand-link">
+        <div class="brand-logo">📚</div>
+        <div class="brand-text">
+          <h1>Apex Tuition Academy</h1>
+          <span>Teacher Administration</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="/" class="nav-link">
+          ← Back to Student Portal
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-icon">🔐</div>
+        <h2>Teacher Sign In</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">
+          Enter your credentials to access homework dashboard
+        </p>
+      </div>
+
+      <!-- Error Alert -->
+      <div id="errorAlert" class="alert-error"></div>
+
+      <!-- Login Form -->
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username" class="form-label">Username</label>
+          <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            class="form-input" 
+            placeholder="e.g. teacher or admin" 
+            required
+            autocomplete="username"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            class="form-input" 
+            placeholder="••••••••" 
+            required
+            autocomplete="current-password"
+          >
+        </div>
+
+        <button type="submit" id="loginBtn" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+          <span>Sign In to Dashboard</span> →
+        </button>
+      </form>
+
+      <!-- Quick Demo Credentials Box -->
+      <div class="demo-credentials-box">
+        <strong>Default Academy Credentials:</strong>
+        <div style="margin-top: 0.25rem;">Click to auto-fill for quick testing:</div>
+        <div class="demo-btn-group">
+          <button type="button" id="demoTeacherBtn" class="btn btn-secondary btn-sm" style="flex: 1;">
+            Fill: teacher
+          </button>
+          <button type="button" id="demoAdminBtn" class="btn btn-secondary btn-sm" style="flex: 1;">
+            Fill: admin
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>Apex Tuition Academy &copy; 2026. Secure Teacher Portal.</div>
+      <div><a href="/" style="color: var(--primary); text-decoration: none;">Student Portal</a></div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>
